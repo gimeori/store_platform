@@ -15,7 +15,7 @@ async def get_one(id:int, service:ProductService=Depends(get_product_service)):
     return await service.get_one(id)
 
 @app.post('/', summary='создание', status_code=201)
-async def create(data:schema.ProductCreateUpdate, service:ProductService=Depends(get_product_service)):
+async def create(data:schema.ProductCreateUpdate= Depends(), service:ProductService=Depends(get_product_service)):
     return await service.create(data)
 
 @app.delete('/{id}', summary='удаление')

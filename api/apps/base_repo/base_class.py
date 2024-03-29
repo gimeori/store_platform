@@ -32,7 +32,7 @@ class BaseService(Generic[ModelType]):
     
     async def create(self,data):
         async with self.db_session as session:
-            item=self.table(**data.dic())
+            item=self.table(**data.dict())
             session.add(item)
             await session.commit()
         return item
@@ -41,13 +41,14 @@ class BaseService(Generic[ModelType]):
         async with self.db_session as session:
             await session.execute(
                 update(self.table),
-                [data.dic()]
+                [data.dict()]
             )
             await session.commit()
         return await self.get_one(data.id)
     
-    async def delete(self,id):
+    async def delete(self, id):
         async with self.db_session as session:
-            await session.execute(delete(self.table).filter(self.table.id)==id)
+            await session.execute(delete(self.table).where(self.table.id == id))
             await session.commit()
         return None
+

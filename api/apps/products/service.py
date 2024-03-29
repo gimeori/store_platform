@@ -13,14 +13,14 @@ class ProductService(BaseService[Products]):
 
     async def create(self,product):
         path_folder='static/images/products'
-        if not os.exists(path_folder):
+        if not os.path.exists(path_folder):
             os.mkdir(path_folder)
         path_image=image_add_origin(product.image,path_folder)
         async with self.db_session as session:
             new_product=self.table(
                 name=product.name,
                 price=product.price,
-                description=product.decription,
+                description=product.description,
                 image=path_image,
                 shop_id=product.shop_id,
                 brand_id=product.brand_id
