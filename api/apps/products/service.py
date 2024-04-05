@@ -25,7 +25,7 @@ class ProductService(BaseService[Products]):
                 shop_id=product.shop_id,
                 brand_id=product.brand_id
             )
-            await session.add(new_product)
+            session.add(new_product)
             await session.commit()
         return new_product
 

@@ -13,7 +13,7 @@ class Users(Base):
 
 
     shop=relationship("Shops",back_populates="owner")
-
+    payment=relationship("Payments",back_populates="user")
     
 
     def __str__(self) -> str:

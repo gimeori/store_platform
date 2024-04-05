@@ -11,7 +11,7 @@ class ProductCreateUpdate:
     name:str=Form(...)
     price:float=Form(...)
     description:str=Form(...)
-    image:UploadFile = File(...)
+    image:UploadFile= File(...)
     shop_id:int=Form(...)
     brand_id:int=Form(...)
 
