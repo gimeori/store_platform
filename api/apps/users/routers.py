@@ -21,3 +21,7 @@ async def create(data:schema.UserCreateUpdate, service:UserService=Depends(get_u
 @app.delete('/{id}', summary='удаление')
 async def delete(id:int,service:UserService=Depends(get_user_service)):
     return await service.delete(id)
+
+@app.put('/', summary='обновление', response_model=schema.UserInfo)
+async def update(data:schema.UserCreateUpdate, service:UserService=Depends(get_user_service)):
+    return await service.update(data)

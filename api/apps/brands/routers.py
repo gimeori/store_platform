@@ -21,3 +21,7 @@ async def create(data:schema.BrandCreateUpdate, service:BrandService=Depends(get
 @app.delete('/{id}', summary='удаление')
 async def delete(id:int,service:BrandService=Depends(get_brand_service)):
     return await service.delete(id)
+
+@app.put('/', summary='обновление', response_model=schema.BrandInfo)
+async def update(data:schema.BrandCreateUpdate, service:BrandService=Depends(get_brand_service)):
+    return await service.update(data)

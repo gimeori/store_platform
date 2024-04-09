@@ -21,3 +21,7 @@ async def create(data:schema.PaymentCreateUpdate, service:PaymentService=Depends
 @app.delete('/{id}', summary='удаление')
 async def delete(id:int,service:PaymentService=Depends(get_payment_service)):
     return await service.delete(id)
+
+@app.put('/', summary='обновление', response_model=schema.PaymentInfo)
+async def update(data:schema.PaymentCreateUpdate, service:PaymentService=Depends(get_payment_service)):
+    return await service.update(data)

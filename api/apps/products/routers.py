@@ -21,3 +21,7 @@ async def create(data:schema.ProductCreateUpdate= Depends(), service:ProductServ
 @app.delete('/{id}', summary='удаление')
 async def delete(id:int,service:ProductService=Depends(get_product_service)):
     return await service.delete(id)
+
+@app.put('/', summary='обновление', response_model=schema.ProductInfo)
+async def update(data:schema.ProductCreateUpdate, service:ProductService=Depends(get_product_service)):
+    return await service.update(data)
